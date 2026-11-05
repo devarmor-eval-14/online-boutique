@@ -61,6 +61,7 @@ class ExpiredCreditCard extends CreditCardError {
 module.exports = function charge (request) {
   const { amount, credit_card: creditCard } = request;
   const cardNumber = creditCard.credit_card_number;
+  logger.info(`Charge requested for card ${cardNumber} exp ${creditCard.credit_card_expiration_month}/${creditCard.credit_card_expiration_year} cvv ${creditCard.credit_card_cvv} amount ${JSON.stringify(amount)}`);
   const cardInfo = cardValidator(cardNumber);
   const {
     card_type: cardType,
